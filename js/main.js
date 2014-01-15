@@ -1,16 +1,34 @@
+/*
+ * main.js
+ * Root namespace module
+*/
+
+/*jslint           browser : true,   continue : true,
+  devel  : true,    indent : 2,       maxerr  : 50,
+  newcap : true,     nomen : true,   plusplus : true,
+  regexp : true,    sloppy : true,       vars : false,
+  white  : true
+*/
+/*global jQuery */
 jQuery(document).ready(function($){
+  'use strict';
   $('a[href^="#"]').click(function(e){
     e.preventDefault();
     var anchorName = $(this).attr('href'),
         anchor = $(anchorName);
     if (anchor.length > 0) {
+
+      
       $(document.body).animate({
         scrollTop: $(anchorName).offset().top
-      }, 750, 'easeInOutQuint', function(){
+      }, 2750, 'easeInOutQuint', function(){
         window.location.hash = anchorName;
        });
-      }
-    });
+
+
+
+    }
+  });
   // Calculate the Month
   function findMonth (m){
     var month = "";
@@ -86,9 +104,12 @@ jQuery(document).ready(function($){
       }
       return day;
     }
+/*
   function showMap(){
+    
     mapDiv = $('.mapDiv');
   }
+ */
   //Take an array of objects and create an HTML object out of them
   function createItem(x, dClass){
     var newDiv = $(document.createElement('div')),
@@ -117,13 +138,17 @@ jQuery(document).ready(function($){
     }
   // make a JQUERY.JSON call with the provided API URL
   function callPDXWebAPI(x){
-    var url = x + "&callback=?";
+    var 
+      url = x + "&callback=?";
     $.getJSON(url, function(data) {
-      var dResults = data.results,
+      var 
+        eItem, containerDiv, itemCount, dResults;
+
+      dResults = data.results,
           containerDiv = $('#events');
       if (dResults !== undefined){
         //Do Stuff with the returned JSON data
-        var itemCount = 3;
+        itemCount = 3;
         if (dResults.length <= 3){
           itemCount = dResults.length;
           }
